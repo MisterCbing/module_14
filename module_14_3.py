@@ -37,10 +37,14 @@ async def main_menu(message: Message):
 
 @dp.message(F.text == 'Купить')
 async def get_buying_list(message: Message):
-    await message.answer_photo(FSInputFile('vit1.jpg'), 'ПапаЗол')
-    await message.answer_photo(FSInputFile('vit2.jpg'), 'Выпивон')
-    await message.answer_photo(FSInputFile('vit3.jpg'), 'Загрустин')
-    await message.answer_photo(FSInputFile('vit4.jpg'), 'Былзол')
+    await message.answer(f'Название: ПАПАЗОЛ | Описание: описание1 | Цена: 100')
+    await message.answer_photo(FSInputFile('vit1.jpg'))
+    await message.answer(f'Название: ВЫПИВОН | Описание: описание2 | Цена: 200')
+    await message.answer_photo(FSInputFile('vit2.jpg'))
+    await message.answer(f'Название: ЗАГРУСТИН | Описание: описание3 | Цена: 300')
+    await message.answer_photo(FSInputFile('vit3.jpg'))
+    await message.answer(f'Название: БЫЛЗОЛ | Описание: описание4 | Цена: 400')
+    await message.answer_photo(FSInputFile('vit4.jpg'))
     await message.answer('Выберите продукт для покупки:', reply_markup=ikb_farm)
 
 
