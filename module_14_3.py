@@ -10,11 +10,14 @@ ibutton1 = InlineKeyboardButton(text='Рассчитать норму калор
 ibutton2 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
 ikb = InlineKeyboardMarkup(inline_keyboard=[[ibutton1, ibutton2]])
 
-ib1 = InlineKeyboardButton(text='Папазол', callback_data='product_buying')
-ib2 = InlineKeyboardButton(text='Выпивон', callback_data='product_buying')
-ib3 = InlineKeyboardButton(text='Загрустин', callback_data='product_buying')
-ib4 = InlineKeyboardButton(text='Былзол', callback_data='product_buying')
+farm = ['', 'ПАПАЗОЛ', 'ВЫПИВОН', 'ЗАГРУСТИН', 'БЫЛЗОЛ']
+
+ib1 = InlineKeyboardButton(text=farm[1], callback_data='product_buying')
+ib2 = InlineKeyboardButton(text=farm[2], callback_data='product_buying')
+ib3 = InlineKeyboardButton(text=farm[3], callback_data='product_buying')
+ib4 = InlineKeyboardButton(text=farm[4], callback_data='product_buying')
 ikb_farm = InlineKeyboardMarkup(inline_keyboard=[[ib1, ib2, ib3, ib4]])
+
 
 
 class UserState(StatesGroup):
@@ -37,14 +40,9 @@ async def main_menu(message: Message):
 
 @dp.message(F.text == 'Купить')
 async def get_buying_list(message: Message):
-    await message.answer(f'Название: ПАПАЗОЛ | Описание: описание1 | Цена: 100')
-    await message.answer_photo(FSInputFile('vit1.jpg'))
-    await message.answer(f'Название: ВЫПИВОН | Описание: описание2 | Цена: 200')
-    await message.answer_photo(FSInputFile('vit2.jpg'))
-    await message.answer(f'Название: ЗАГРУСТИН | Описание: описание3 | Цена: 300')
-    await message.answer_photo(FSInputFile('vit3.jpg'))
-    await message.answer(f'Название: БЫЛЗОЛ | Описание: описание4 | Цена: 400')
-    await message.answer_photo(FSInputFile('vit4.jpg'))
+    for i in range(1,5):
+        await message.answer(f'Название: {farm[i]} | Описание: описание{i} | Цена: {i}00')
+        await message.answer_photo(FSInputFile(f'vit{i}.jpg'))
     await message.answer('Выберите продукт для покупки:', reply_markup=ikb_farm)
 
 
